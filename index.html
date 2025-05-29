@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcial</title>
+    <script>
+        function validarFormulario() {
+            const apellido = document.getElementById('apellido').value;
+            const nombre = document.getElementById('nombre').value;
+            const dni = document.getElementById('dni').value;
+            const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+            const email = document.getElementById('email').value;
+
+            if (!apellido || !nombre || !dni || !fechaNacimiento || !email) {
+                alert("Por favor, complete todos los campos.");
+                return false;
+            }
+            if (dni.length !== 8) {
+                alert("El DNI debe tener 8 dígitos.");
+                return false;
+            }
+            if (fechaNacimiento<"2006,01,01") {
+                alert("La fecha de nacimiento debe ser posterior al 2006.");
+                return false;
+
+            }
+            alert("Formulario validado correctamente.");
+            return true;
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const boton = document.querySelector('button[type="boton"]');
+            boton.addEventListener('click', function(event) {
+                event.preventDefault();
+                validarFormulario();
+            });
+        });
+
+        function preguntas() {
+            const pregunta1 = prompt("Nacionalidad");
+            const pregunta2 = prompt("color favorito");
+            const pregunta3 = prompt("mascota nombre");
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const progresivo = document.querySelector('button[type="progresivo"]');
+            progresivo.addEventListener('click', function(event) {
+                event.preventDefault();
+                preguntas();
+                mostrarRespuestas();
+            });
+        });
+        function mostrarRespuestas() {
+            const respuestas = document.createElement('div');
+            respuestas.innerHTML = `
+                <p>Nacionalidad: ${pregunta1}</p>
+                <p>Color favorito: ${pregunta2}</p>
+                <p>Nombre de la mascota: ${pregunta3}</p>
+            `;
+            document.body.appendChild(respuestass);
+        }
+        
+    </script>
+</head>
+<body>
+    <form>
+        <label for="nombre">Apellido:</label>
+        <br>
+        <input type="text" id="apellido" name="apellido">
+        <br>
+        <label for="nombre">Nombre:</label>
+        <br>
+        <input type="text" id="nombre" name="nombre">
+        <br>
+        <label for="dni">DNI:</label>
+        <br>
+        <input type="number" id="dni" name="dni" max="99999999">
+        <br>
+        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+        <br>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento" min="2006-01-01">
+        <br>
+        <label for="email">Email:</label>
+        <br>
+        <input type="email" id="email" name="email">
+        <br>
+        <button type="boton">validar</button>
+        <br>
+        <button type="progresivo">Preguntas-Respuestas</button>
+        
+    </form>
+    <h2>Sus respuestas fueron:</h2>
+    </body>
+    
+</html>
